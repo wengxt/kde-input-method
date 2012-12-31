@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Fcitx
+Name[zh_CN]=Fcitx
+Exec=fcitx -D
+Icon=fcitx
+X-KDE-InputMethodRestartArguement=-r
+X-KDE-GtkIMModule=fcitx
+X-KDE-QtIMModule=fcitx
+X-KDE-QtIMModuleLibrary=libqtim-fcitx.so qtim-fcitx.so
+X-KDE-GtkIMModuleLibrary=im-fcitx.so
+X-KDE-XModifiers=fcitx

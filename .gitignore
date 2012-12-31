@@ -1,0 +1,16 @@
+*~
+build*/
+.*
+!.git*
+.git/
+src/lib/fcitx-utils/keysymdef.h
+*.tar.*
+*.kdev4
+tools/pybase.mb
+tools/pyphrase.mb
+*.kate-swp
+*.orig
+tags
+astyle.sh
+cscope.*
+*.part

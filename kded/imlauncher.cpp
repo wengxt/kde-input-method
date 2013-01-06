@@ -36,6 +36,7 @@ K_EXPORT_PLUGIN(IMChooserFactory("kded_imlauncher"))
 
 IMLauncher::IMLauncher(QObject *parent, const QList<QVariant> &) : KDEDModule(parent)
     ,imProcess(0)
+    ,m_failStart(0)
 {
     KGlobal::dirs()->addResourceType("inputmethods", "data", "inputmethods");
     startInputMethod();
@@ -81,6 +82,7 @@ void IMLauncher::startInputMethod()
     imProcess = new KProcess;
     connect(imProcess, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(imFinshed(int,QProcess::ExitStatus)));
     *imProcess << KShell::splitArgs( exec );
+    m_startTime = QDateTime::currentDateTimeUtc();
     imProcess->start();
 }
 
@@ -90,6 +92,14 @@ void IMLauncher::imFinshed(int exitCode, QProcess::ExitStatus exitStatus)
     Q_UNUSED(exitStatus);
     delete imProcess;
     imProcess = 0;
+    if (m_startTime.msecsTo(QDateTime::currentDateTimeUtc()) < 5000) {
+        m_failStart++;
+    }
+
+    if (m_failStart >= 5) {
+        return;
+    }
+
     QTimer::singleShot(1000, this, SLOT(startInputMethod()));
 }
 

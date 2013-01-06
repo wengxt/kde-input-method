@@ -20,6 +20,8 @@
 #ifndef IMCHOOSERSTARTER_H
 #define IMCHOOSERSTARTER_H
 
+#include <QDateTime>
+
 #include <KDEDModule>
 #include <KProcess>
 
@@ -39,6 +41,8 @@ private slots:
     void imFinshed(int exitCode, QProcess::ExitStatus exitStatus);
 private:
     KProcess* imProcess;
+    QDateTime m_startTime;
+    int m_failStart;
 };
 
 #endif

@@ -55,7 +55,7 @@ void KCMIMChooser::save()
             return;
         envScript.write("#!/bin/sh\n");
         envScript.write("kdelibexecdir=$(kde4-config --install libexec)\n");
-        envScript.write("[ -n \"${kdelibexecdir}\" ] && source \"${kdelibexecdir}/setimenv.sh\" \n");
+        envScript.write("[ -n \"${kdelibexecdir}\" ] && test -r \"${kdelibexecdir}/setimenv.sh\" && source \"${kdelibexecdir}/setimenv.sh\"\n");
         envScript.close();
     }
     else {
